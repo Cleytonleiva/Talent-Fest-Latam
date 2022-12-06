@@ -1,18 +1,25 @@
-import { useState } from 'react'
-import { ProductProvider } from './context/productContext'
+import { useState, useContext } from 'react'
+import {ProductContainer} from './components/ProductContainer'
+// import  RegionDistrictContext  from './contexts/regionDistrictProvider'
 import { Header } from './components/Header'
-
+import {ProductContext, getDefaultValue} from './contexts/productContext'
+import { LocationContext, RegionDistrictSchema } from './contexts/regionDistrictProvider'
+import { ProductData } from './components/ProductData'
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <Header />
-      <h2>HOLA TALENT FEST</h2>
-      <ProductProvider />
 
-    </div>
-
+    <ProductContext.Provider value={getDefaultValue()}>
+      <LocationContext.Provider value={RegionDistrictSchema()}>
+      
+      
+          <Header />
+       
+      
+          <ProductContainer />
+    
+      </LocationContext.Provider>
+    </ProductContext.Provider>
   )
 }
 
